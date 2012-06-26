@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Post To Tumblr | Options</title>
+<script src="lib/jquery-1.4.3.min.js"></script>
+<script src="lib/tipsy/javascripts/jquery.tipsy.js"></script>
+<script type="text/javascript">
+
+var bgPage = chrome.extension.getBackgroundPage();
+
+// Saves options to localStorage.
+function save_options() 
+{ 
+	localStorage["tumblr_email"] = $("#email-txt").val();
+	localStorage["tumblr_pass"] = $("#password-txt").val();
+	localStorage["additional-blogs-txt"] = $("#additional-blogs-txt").val();
+	localStorage["publish_state"] = $("#publish-state").val();
+	localStorage["tweet_post"] = $("#tweet-post").val();
+	localStorage["preformat_post"] = $("#preformatPostChk").attr('checked')?1:0;
+	$("#saved-txt").show();
+	$("#saved-txt").fadeOut(1000);
+	bgPage.updateContext();
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() 
+{
+	$("#email-txt").val(localStorage["tumblr_email"]?localStorage["tumblr_email"]:"");
+	$("#password-txt").val(localStorage["tumblr_pass"]?localStorage["tumblr_pass"]:"");
+	$("#additional-blogs-txt").val(localStorage["additional-blogs-txt"]?localStorage["additional-blogs-txt"]:"");
+	$("#publish-state").val(localStorage["publish_state"]?localStorage["publish_state"]:"published"); 
+	$("#tweet-post").val(localStorage["tweet_post"]?localStorage["tweet_post"]:"no"); 
+	$("#preformatPostChk").attr('checked',localStorage["preformat_post"]==1?true:false); 
+	$('#additional-blogs-help').tipsy({gravity:"w"});
+}
+
+</script>
+<link rel="stylesheet" href="main.css" type="text/css"/>
+<link rel="stylesheet" href="lib/tipsy/stylesheets/tipsy.css" type="text/css"/>
+</head>
+<body onLoad="restore_options()">
+    <div id="header">    
+      <h1>Post To Tumblr Options</h1>
+    </div>
+    <div class="section-header first"><em>Provide your Tumblr login details below</em></div>
+    <br >
+    <p> <span class="desc-text">Email:<span>
+      <input type="text" id="email-txt">
+      <br >
+      <span class="desc-text">Password:<span>
+      <input type="password" id="password-txt">
+      <br >
+	  <br >
+	  <span class="desc-text">Tweet Post:<span>
+      <select id="tweet-post" size="1">
+        <option value="no">no</option>
+        <option value="auto">auto</option>
+        <option value="prompt">prompt</option>
+      </select>
+      <br >	
+      <span class="desc-text">Publish As:<span>
+      <select id="publish-state" size="1">
+        <option value="published">published</option>
+        <option value="draft">draft </option>
+        <option value="submission">submission</option>
+        <option value="queue">queue</option>
+      </select>
+      <br >
+      <br >
+      Additional Blogs: <a id="additional-blogs-help" href="#" original-title="Optional - You can specify additional Tumblr blogs to post to. Comma sepparate the blog names e.g. mikeydo.tumblr.com, mikeydodo.tumblr.com">?</a>
+      <input type="text" id="additional-blogs-txt">
+      <br >
+      <br >
+      <input type="checkbox" id="preformatPostChk"/> Allow me to format posts before publishing
+      <br >
+		<br >
+      <button id="save-button" style="font-weight:bold" onClick="save_options()">Save</button>
+    </p>
+    <div id="saved-txt" style="display: none">Options Saved!</div>
+    <div class="fix"></div>
+	<br/>
+	<br/>
+	If you like this extension you could really help me out<br/>and speed up development by donating:
+    <div id="footer"> 
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+			<input type="hidden" name="cmd" value="_donations">
+			<input type="hidden" name="business" value="mike.cann@gmail.com">
+			<input type="hidden" name="lc" value="US">
+			<input type="hidden" name="item_name" value="PostToTumblr">
+			<input type="hidden" name="no_note" value="0">
+			<input type="hidden" name="currency_code" value="USD">
+			<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		</form>
+		<em>Created by: <a href="http://www.mikecann.co.uk">Michael Cann, 2010</a>.  <br/>(<a href="http://http://twitter.com/#!/mikeysee">@mikeysee</a>, <a href="http://mikeysee.tumblr.com">mikeysee.tumblr.com</a>)</em><br />
+	</div>	
+</body>
+</html>

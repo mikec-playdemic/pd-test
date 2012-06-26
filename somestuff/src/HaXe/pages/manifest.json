@@ -1,0 +1,22 @@
+{
+  "name": "Post To Tumblr",
+  "description": "Enables right-click posting of content to Tumblr",
+  "version": "2.0",
+  "permissions": ["contextMenus","notifications","http://*/*", "https://*/*", "tabs"],
+  "content_scripts": [{"matches": ["http://*/*","https://*/*"],"css": ["content.css"], "js": ["content.js"]}],
+  "background_page": "background.html",
+  "options_page": "options.html",
+  "minimum_chrome_version": "6",
+  "browser_action": 
+   {
+      "default_icon": "images/icon48.png",
+	  "default_title": "Post To Tumblr v2.0"
+   },
+  "icons":
+  { 
+	"16":"images/icon16.png", 
+	"32":"images/icon32.png",
+	"48":"images/icon48.png", 
+	"128":"images/icon128.png"
+  }
+}

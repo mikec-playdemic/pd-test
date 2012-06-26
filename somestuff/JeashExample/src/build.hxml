@@ -1,0 +1,6 @@
+-cp src
+-js bin/example.js
+-main Main.hx
+-debug
+-lib jeash
+--remap flash:jeash

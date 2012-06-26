@@ -1,0 +1,37 @@
+<html>
+<head>
+<script>
+	
+	// Thanks to share on tumblr extension for this
+	chrome.tabs.getSelected(null, function(tab) 
+	{
+		var url = getParam(tab.url,"u")
+		//var url = encodeURIComponent(getParam(tab.url,"u"));
+		var finalurl="http://www.tumblr.com/share?v=3&u="+url+"&s=";
+		document.getElementById("container").src=finalurl;
+	});	
+		
+	// Thanks http://www.netlobo.com/url_query_string_javascript.html
+	function getParam( url, name )
+	{
+	  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	  var regexS = "[\\?&]"+name+"=([^&#]*)";
+	  var regex = new RegExp( regexS );
+	  var results = regex.exec( url );
+	  if( results == null )
+		return "";
+	  else
+		return results[1];
+	}
+	
+</script>
+<link rel="stylesheet" href="main.css" type="text/css"/>
+</head>
+<body>
+	<div id="header">    
+      <h1>Post To Tumblr</h1>
+    </div>
+    <div class="section-header first"><em>Format your post below</em></div>
+    <br >
+	<iframe id="container" style="width:500px;height:430px;border:0px" src=""></iframe></body>
+</html>

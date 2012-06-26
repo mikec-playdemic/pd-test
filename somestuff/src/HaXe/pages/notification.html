@@ -1,0 +1,80 @@
+<html>
+<head>
+<style type="text/css">
+	body 
+	{
+		margin:5px;
+		padding:5px;
+		overflow:hidden;
+		font-family:Verdana, Geneva, sans-serif;		
+	}
+	#extensionIconDiv
+	{
+		float:left;	
+	}		
+
+	#titleAndURL
+	{
+		float:left;	
+		margin-left: 5px;
+		word-wrap: break-word;		
+		width: 225px;
+	}	
+	
+	#url
+	{
+		word-break: keep-all;
+	}
+	
+	h4
+	{
+		font-size: 12px;
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	p
+	{
+		font-size: 10px;
+		margin: 0px;
+		margin-top: 5px;
+	}
+	
+</style>
+<script type="text/javascript" >
+	function fromQString()
+	{
+		var selText = [];
+		var qString = window.location.search;
+		if(qString.indexOf("?") == 0)
+		qString = qString.substring(1);
+		qComponents = qString.split("&");
+		for(i=0;i,qComponents.length;i++)
+		{ 
+			qValue = qComponents.split("=");
+			if(qValue [0]== "t")
+			selText.push(decodeURIComponent(qValue[1]));
+		}
+		return selText;
+	}
+	
+	
+	function populate()
+	{
+		var content = fromQString();
+		var target = document.getElementById('urlTxt');
+		target.innerHTML = "jam jma";//content;
+	}
+</script>
+</head>
+<body onload="populate()">
+    <div id="extensionIconDiv">
+        <img src="images/icon48.png" />
+    </div>
+    
+    <div id="titleAndURL">
+        <h4>Posting Image..</h4>
+        <p id="urlTxt">monkey monkey monkey</p>
+    </div>
+</body>
+</html>

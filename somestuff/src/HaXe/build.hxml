@@ -1,0 +1,23 @@
+-cp src-background
+-cp src-common
+-js bin/background.js
+-main BackgroundMain.hx
+-debug
+-lib chrome-extension
+-lib robothaxe
+-lib hsl-1
+-lib hxJson2
+--macro RTTI.generate()
+
+--next
+
+-cp src-content
+-cp src-common
+-js bin/content.js
+-main ContentMain.hx
+-debug
+-lib chrome-extension
+-lib robothaxe
+-lib hsl-1
+-lib hxJson2
+--macro RTTI.generate()
